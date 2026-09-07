@@ -274,7 +274,7 @@ export default function History({
             Trust Achievements & Honors Circular
           </h1>
           <p className="text-sm md:text-base font-serif text-foreground/90 font-medium mt-2.5 mb-1 leading-relaxed">
-            Award given to VRNT by Sri Bhandarakeri Mutt Karnataka at Raichur. Rec'd on our behalf by Ganesha Ghanapaty and Ghanapaty Bhat.
+            Award presented to VRNT by Sri Bhandarakeri Mutt, Karnataka, at Raichur, received on behalf of the Trust by Vidwan Shri S. Ganesha Ghanapatigal and Vidwan Shri Ganapati Bhat.
           </p>
           <p className="text-xs md:text-sm font-serif text-muted-foreground m-0">
             Historic milestone document {currentAchieveIndex + 1} of {achievementImages.length}
@@ -399,7 +399,7 @@ export default function History({
                   src="/history/IMG-20260716-WA0008.webp"
                   alt="Photograph of Sri Mahaperiyava accompanying the account of Sri Annadurai Iyengar's Vedic service"
                   loading="lazy"
-                  className="w-full h-full object-cover rounded"
+                  className="w-full h-full object-contain rounded"
                   onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
                 />
               </div>
@@ -408,7 +408,7 @@ export default function History({
                   src="/history/IMG-20260716-WA0009.webp"
                   alt="Photograph of Sri Mahaperiyava giving a discourse, accompanying the account of Sri Annadurai Iyengar's Vedic service"
                   loading="lazy"
-                  className="w-full h-full object-cover rounded"
+                  className="w-full h-full object-contain rounded"
                   onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
                 />
               </div>
@@ -441,7 +441,7 @@ export default function History({
                     src="/history/IMG-20260716-WA0011.webp"
                     alt="Photograph of Sri Mahaperiyava accompanying the account of his blessing to Sri Annadurai Iyengar"
                     loading="lazy"
-                    className="w-full h-full object-cover rounded"
+                    className="w-full h-full object-contain rounded"
                     onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
                   />
                 </div>
@@ -582,7 +582,7 @@ export default function History({
               </button>
 
               <p className="font-serif text-sm text-muted-foreground leading-relaxed text-justify m-0">
-                Award given to VRNT by Sri Bhandarakeri Mutt Karnataka at Raichur. Rec'd on our behalf by Ganesha Ghanapaty and Ghanapaty Bhat.
+                Award presented to VRNT by Sri Bhandarakeri Mutt, Karnataka, at Raichur, received on behalf of the Trust by Vidwan Shri S. Ganesha Ghanapatigal and Vidwan Shri Ganapati Bhat.
               </p>
             </div>
 

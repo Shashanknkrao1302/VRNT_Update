@@ -222,7 +222,7 @@ export default function PoorthyPage({ onBack }: PoorthyProps) {
                       exit={{ opacity: 0.3, scale: 1.02 }}
                       transition={{ duration: 0.2 }}
                       loading="lazy"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain"
                       onError={(e) => {
                         (e.target as HTMLImageElement).src = g1ImagePaths[0];
                       }}
@@ -332,7 +332,7 @@ export default function PoorthyPage({ onBack }: PoorthyProps) {
                       exit={{ opacity: 0.3, scale: 1.02 }}
                       transition={{ duration: 0.2 }}
                       loading="lazy"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain"
                       onError={(e) => {
                         (e.target as HTMLImageElement).src = g2ImagePaths[0];
                       }}
@@ -442,7 +442,7 @@ export default function PoorthyPage({ onBack }: PoorthyProps) {
                       exit={{ opacity: 0.3, scale: 1.02 }}
                       transition={{ duration: 0.2 }}
                       loading="lazy"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain"
                       onError={(e) => {
                         (e.target as HTMLImageElement).src = g3ImagePaths[0];
                       }}
@@ -552,7 +552,7 @@ export default function PoorthyPage({ onBack }: PoorthyProps) {
                       exit={{ opacity: 0.3, scale: 1.02 }}
                       transition={{ duration: 0.2 }}
                       loading="lazy"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain"
                       onError={(e) => {
                         (e.target as HTMLImageElement).src = g4ImagePaths[0];
                       }}
@@ -662,7 +662,7 @@ export default function PoorthyPage({ onBack }: PoorthyProps) {
                       exit={{ opacity: 0.3, scale: 1.02 }}
                       transition={{ duration: 0.2 }}
                       loading="lazy"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain"
                       onError={(e) => {
                         (e.target as HTMLImageElement).src = g5ImagePaths[0];
                       }}
@@ -772,7 +772,7 @@ export default function PoorthyPage({ onBack }: PoorthyProps) {
                       exit={{ opacity: 0.3, scale: 1.02 }}
                       transition={{ duration: 0.2 }}
                       loading="lazy"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain"
                       onError={(e) => {
                         (e.target as HTMLImageElement).src = g6ImagePaths[0];
                       }}

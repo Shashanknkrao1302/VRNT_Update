@@ -77,7 +77,7 @@ export default function SanskritPage({ onBack }: SanskritProps) {
                   src="/assets/sanskrit.webp"
                   alt="Vidyaarthis undergoing oral and written evaluation for the Sanskrit proficiency examination conducted by Chittoor Samskrutha Sabha"
                   loading="lazy"
-                  className="w-full h-auto object-cover max-h-[380px]"
+                  className="w-full h-auto object-contain max-h-[380px]"
                 />
               </div>
               <p className="mt-3 text-xs sm:text-sm font-bold text-primary text-center font-serif m-0">

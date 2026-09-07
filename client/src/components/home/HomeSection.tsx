@@ -69,7 +69,7 @@ export default function HomeSection({
                 loading="lazy"
                 width={640}
                 height={480}
-                className="aspect-[4/3] w-full rounded-lg border border-border object-cover shadow-soft"
+                className="aspect-[4/3] w-full rounded-lg border border-border bg-muted object-contain shadow-soft"
               />
             </div>
           )}

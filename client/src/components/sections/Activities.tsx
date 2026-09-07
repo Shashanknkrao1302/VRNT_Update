@@ -79,7 +79,7 @@ export default function Activities() {
                     src="/assets/Chandrasekharendra Saraswathi Swamigal examination.webp"
                     alt="Acharya examining students in examination hall"
                     loading="lazy"
-                    className="h-auto max-h-[380px] w-full rounded object-cover"
+                    className="h-auto max-h-[380px] w-full rounded object-contain"
                   />
                 </div>
                 <p className="m-0 mt-3 text-center font-serif text-xs font-bold text-primary sm:text-sm">
@@ -117,7 +117,7 @@ export default function Activities() {
                       src="/assets/Acharya certificate.webp"
                       alt="Graduation समारोह certificate presentation"
                       loading="lazy"
-                      className="h-auto max-h-[380px] w-full rounded object-cover"
+                      className="h-auto max-h-[380px] w-full rounded object-contain"
                     />
                   </div>
                   <p className="m-0 mt-3 text-center font-serif text-xs font-bold text-primary sm:text-sm">

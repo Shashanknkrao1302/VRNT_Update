@@ -625,3 +625,266 @@ changes; `npm run check` (0 errors), `npm run test` (27/27), `npm audit`
 - To roll back after merging: `git revert` the commits on this branch (`Phase 1: ...`, `Phase 2/3: ...`, `Final visual QA corrections and image optimization`, `Move the announcement above the fold in the homepage hero`, `Rearrange the hero into three areas: text, photo, announcement`, `Make the announcement a genuinely vertical card and fill the first screen`, `Fix mobile menu scrolling, desktop dropdown position, and highlight the announcement`), or simply redeploy from the `main` branch's existing Vercel deployment history, which requires no code changes since production was never touched.
 - Every commit on this branch is a coherent, working checkpoint (`tsc` clean, build succeeds, tests pass) — if a partial rollback is ever needed, commits can be reverted independently in reverse order, though each depends on the design tokens and layout components introduced in Phase 1.
 - The image-optimization commit specifically can be reverted on its own without affecting layout/functionality: it only changes image `src` paths (raster → `.webp`) and adds new `.webp` files; no component logic changed as part of it.
+
+## 13. Tester-feedback correction pass (award text, eye strain, image orientation, cropping, link/media audit)
+
+Branch: `fix/tester-feedback-visuals-and-links`, cut from `upstream/main` at
+`856e259` (the merge of the prior redesign work into the canonical
+upstream repo). This section documents a separate, later pass driven by
+fresh tester feedback — a focused correction pass, not a redesign. See
+`LINK_AND_MEDIA_AUDIT.md` for the detailed link/image tables referenced
+below.
+
+### 13.1 Award-text correction (Task 1)
+
+`client/src/components/sections/History.tsx` contained two identical
+occurrences (the Achievements summary card, and its "View Full Circular"
+detail sub-view) of a sentence with an incorrect name spelling. Corrected
+to the exact approved text:
+
+> Old: *"Award given to VRNT by Sri Bhandarakeri Mutt Karnataka at Raichur.
+> Rec'd on our behalf by Ganesha Ghanapaty and Ghanapaty Bhat."*
+>
+> New: *"Award presented to VRNT by Sri Bhandarakeri Mutt, Karnataka, at
+> Raichur, received on behalf of the Trust by Vidwan Shri S. Ganesha
+> Ghanapatigal and Vidwan Shri Ganapati Bhat."*
+
+A repo-wide search confirmed no other file (alt text, tests, structured
+data) contained the old spellings ("Ganesha Ghanapaty" / "Ghanapaty
+Bhat"), so no further edits were needed. `tsc --noEmit` clean after the
+change; both occurrences visually confirmed correct in the production
+build at 1440px and 390px.
+
+### 13.2 Bright-white surface / eye-strain reduction (Task 2)
+
+Audited actual **computed** background colors (not class names) across
+every route via a headless-browser crawl of the production build. Only
+one token was actually near-white: `--surface` / `--card` / `--popover`
+(shared, used by every card, the Card UI component, and the desktop
+nav-dropdown/`--popover`), previously `40 32% 98%` — that computes to
+`rgb(251, 250, 248)`, ~2–4 units off pure white on every channel
+regardless of its warm hue, and it backs essentially every card on every
+page. `--background` (the page itself, `42 38% 95%` → `rgb(247, 244,
+237)`) was already a comfortable warm parchment and did not need
+changing. No hardcoded `bg-white` / `#fff` surfaces were found anywhere
+in `client/src` outside this token.
+
+Changed `--surface` / `--card` / `--popover` to `38 30% 94%` →
+`rgb(244, 241, 235)` — a shade *deeper* than the page background rather
+than lighter, so no surface anywhere on the site is ever brighter than
+the page itself. Cards remain visually distinct via the `border
+border-border` + `shadow-soft`/`shadow-lifted` utilities already applied
+to every card wrapper (a pre-existing pattern this change relies on,
+rather than raw brightness contrast).
+
+**Contrast re-verified** (WCAG formula, computed from the final HSL
+values; ✅ = passes AA):
+
+| Pair | Ratio | AA normal text (4.5:1) | AA large text/UI (3:1) |
+|---|---|---|---|
+| `--foreground` on `--background` | 15.08 | ✅ | ✅ |
+| `--foreground` on `--surface` (new) | 14.70 | ✅ | ✅ |
+| `--muted-foreground` on `--background` | 5.68 | ✅ | ✅ |
+| `--muted-foreground` on `--surface` (new) | 5.54 | ✅ | ✅ |
+| `--muted-foreground` on `--muted` | 5.07 | ✅ | ✅ |
+| `--primary-foreground` on `--primary` | 8.07 | ✅ | ✅ |
+| `--secondary-foreground` on `--secondary` (footer/header navy) | 14.10 | ✅ | ✅ |
+| `--accent-foreground` on `--accent` | 6.31 | ✅ | ✅ |
+| `--accent-strong` (text) on `--background` / `--surface` | 5.53 / 5.39 | ✅ | ✅ |
+| `--primary` (text) on `--background` / `--surface` | 7.75 / 7.55 | ✅ | ✅ |
+
+All ratios above are comfortably above the AA thresholds; the change only
+moved the surface token 4 percentage points darker in lightness, which
+has negligible effect on already-high-contrast dark-text-on-light-card
+pairs. (`--border` against `--background`/`--surface` and
+`--warning-foreground` on `--warning` fall under strict AA ratios, but
+both are pre-existing, unrelated to this change — decorative dividers and
+a status-badge color, not body text — and were not touched.)
+
+Verified via an actual headless-browser read of `getComputedStyle(...).
+backgroundColor` on the built production preview (not just the source
+CSS): `body` → `rgb(247, 244, 237)`, first card-like element → `rgb(244,
+241, 235)` — matching the token math exactly, on every one of the 18
+routes crawled, at both 1440px and 390px. Visually confirmed via full-page
+screenshots: no glaring white blocks on any route; navy footer and
+maroon/gold accents unchanged.
+
+### 13.3 Image orientation audit (Task 3)
+
+Wrote a diagnostic script (EXIF orientation + aspect-ratio cross-check
+against the actual `.webp` output) and ran it against all 66 distinct
+images referenced from `client/src`. Root cause of the tester's
+"sideways/sleeping" report confirmed at the asset-pipeline level, **not**
+a CSS aspect-ratio problem: `scripts/optimize-images.mjs` never called
+`sharp(...).rotate()`, so any source photo with a non-default EXIF
+orientation tag had its raw, un-rotated pixels baked into the `.webp`
+output with no tag left to correct the display.
+
+- **66 images audited**, 2 had a non-default EXIF orientation tag
+  (orientation `6`, i.e. "rotate 90° to display"), and **both** had that
+  rotation baked incorrectly into their `.webp`:
+  - `/poorthy/first gallery/IMG_20260305_111546869_HDR.jpg` — stored
+    4096×3072 (landscape), correct display orientation 3072×4096
+    (portrait). Old `.webp` matched the raw landscape aspect (1.333) —
+    sideways.
+  - `/poorthy/second gallery/IMG_20250831_093631544_HDR.jpg` — identical
+    situation.
+- The other 64 images all had orientation `1` (no rotation tag) and their
+  existing `.webp` output already matched correctly — no other orientation
+  defects found anywhere in the codebase.
+
+**Fix, at the asset-processing level per the explicit requirement (no CSS
+rotation used anywhere):**
+1. Added `sharp(file).rotate()` (no-argument auto-orient) as the first
+   pipeline step in `scripts/optimize-images.mjs`, for every image,
+   before any resize. `.rotate()` physically applies the EXIF rotation
+   and normalizes/drops the now-redundant orientation tag, so the fix is
+   also future-proof for any new photo added later via `npm run
+   optimize-images`.
+2. Regenerated only the two affected `.webp` files (not the full batch,
+   to avoid touching the 64 already-correct outputs) with the corrected
+   pipeline. Both original `.jpg` source files were left untouched.
+3. Re-ran the diagnostic script: **0 of 66 images** now have incorrect
+   orientation baked in. New `.webp` dimensions: 1200×1600 for both
+   (portrait, aspect 0.750) — matching the EXIF-corrected orientation
+   exactly.
+4. Visually confirmed in the production build (Poorthy Examination →
+   "VRNT-POORTHY-SJ26" gallery, first slide): the portrait photo now
+   displays upright and complete, letterboxed on the carousel's existing
+   `bg-black/90` frame — not cropped, not stretched, not mirrored.
+
+No other width/height-attribute-vs-decoded-orientation conflicts were
+found, with one unrelated exception fixed under Task 4 (the homepage
+hero founder portrait's `width`/`height` attributes didn't match its
+actual file — see 13.4).
+
+### 13.4 Cropping / zoom corrections (Task 4)
+
+Full inventory of every `object-cover` / `object-contain` usage in
+`client/src` (grep-verified, not sampled). Each was judged against the
+content-aware rule (document/portrait/decorative/gallery), not
+blindly converted. Changes:
+
+| File | Element | Before | After | Why |
+|---|---|---|---|---|
+| `pages/poorthy.tsx` | Primary slide, all 6 galleries (2 image groups had already been through the orientation fix) | `object-cover` | `object-contain` | Fixed `aspect-16/10`/`aspect-16/9` box was cropping portrait photos; container already had `bg-black/90` for letterboxing — exactly the "darker background fills unused space" pattern the rule calls for. Blurred background copy (behind the "View Album" CTA) intentionally left `object-cover` — decorative, not the primary image. |
+| `pages/initiatives.tsx` | HNY scheme illustrative photo | `object-cover` | `object-contain` | Portrait of people (Category B); wide 2.27:1 source photo, no risk in practice but corrected for certainty. |
+| `components/sections/Mission.tsx` | "Vedic Heritage" card — archival photo of the Kanchi Kamakoti Peetam Acharyas | `object-cover` in a **fixed** `h-[180px]` box | `object-contain` + `bg-muted` | **Most severe finding**: source photo is 707×1456 (very tall/narrow), forced into a landscape 180px-tall box — was cropping most of the frame, very likely cutting off the Acharyas' faces. Container already used `flex items-center justify-center`, clearly designed as a letterbox frame; only the `object-fit` value was wrong. |
+| `components/sections/Mission.tsx` | "Education" card (students, illustrative) | `object-cover` | *(left unchanged)* | Reviewed and accepted: image aspect (1.34) is close to the box's, cropping is mild, and it's a generic decorative illustrative photo, not identifiable individuals. |
+| `components/sections/Activities.tsx` | Both Āchārya photos (examination hall, graduation certificate presentation) | `object-cover` | `object-contain` | Photos of the current Āchārya — maximum sensitivity; converted for certainty even though the `max-h` cap made cropping unlikely at typical widths. |
+| `pages/sanskrit.tsx` | Sanskrit examination photo | `object-cover` | `object-contain` | Same pattern as above, for consistency and safety. |
+| `components/sections/History.tsx` | 3 photos of Sri Mahaperiyava (Annadurai Iyengar profile sub-view) | `object-cover` | `object-contain` | All three sat inside `flex items-center justify-center` frames explicitly designed for letterboxing; `object-cover` was defeating that design. |
+| `components/home/HeroSection.tsx` | Homepage hero founder portrait | `aspect-[4/5]` (0.8) + `object-cover`; `width={640} height={720}` (wrong — real file is 900×1200) | `aspect-[3/4]` (0.75, the image's *actual* aspect) + `object-contain` + corrected `width={900} height={1200}` | The forced 4:5 box didn't match the real 3:4 photo, so despite the code comment claiming "not cropped", a ~6% crop was actually happening. Box aspect now matches the source exactly, so there is no cropping at all (contain vs. cover produce an identical result at this point) and CLS-relevant width/height attributes are now accurate. |
+| `components/home/HomeSection.tsx` | Shared homepage-teaser card (reused for 4 different images: HNY, education, Acharya certificate, an archival Mahaperiyava photo) | Fixed `aspect-[4/3]` + `object-cover` | `object-contain` + `bg-muted` | One shared component renders 4 images with very different native aspect ratios (1.31–2.27); a single fixed `object-cover` ratio was wrong for most of them by construction. Now every image displays complete regardless of its own aspect. |
+| `components/layout/Header.tsx` | Site logo badge | `object-cover` | *(left unchanged)* | Genuinely decorative branding element, pre-cropped to a square at generation time — correct as-is. |
+| `components/sections/{History,Pariksha}.tsx` | YouTube video thumbnail cards | `object-cover` | *(left unchanged)* | Decorative preview thumbnails linking out to the full video on YouTube — Category C/D carve-out; a full-image viewer isn't applicable here since the "full" content is the linked video itself. |
+| `components/sections/History.tsx` | Achievement photo thumbnail-strip selector (64×64px, `alt=""`) | `object-cover` | *(left unchanged)* | Decorative selector thumbnail; the adjacent main viewer already uses `object-contain` (a "full-image viewer" already exists per the rule's carve-out). |
+
+No CSS `rotate-*` transform was used anywhere as a substitute for a real
+orientation fix (13.3 covers the only two genuine orientation defects,
+both fixed at the asset level).
+
+Visually re-verified in the production build: Poorthy galleries (all six
+image groups, not just the first slide — confirmed via realistic
+scroll-and-wait screenshots, see note below), Mission page (Acharyas
+photo now shows the complete photograph), homepage (founder portrait
+full-length, teaser cards complete).
+
+**Screenshot-methodology note**: an initial `fullPage: true` Playwright
+screenshot of the Poorthy sub-view showed galleries 5–6 as solid black.
+Investigating (opening the source `.jpg`/`.webp` files directly, then
+re-testing with a realistic scroll-to-element + wait instead of a single
+full-page stitch) showed this was a **screenshot-capture artifact**
+(native `loading="lazy"` images far down a long page not yet fetched at
+the instant a full-page screenshot stitches that slice), not a real
+rendering defect — confirmed by scrolling there naturally, waiting, and
+re-screenshotting: both galleries render correctly. Recorded here so this
+false alarm isn't repeated or misreported as a fix.
+
+### 13.5 Announcement image review (Task 5)
+
+- `/assets/announcement/poorthy-september-en.webp` and
+  `...-ta.webp` (1024×1536 each, in the `optimize-images.mjs` `TEXT_HEAVY`
+  set → quality 90, never resized) already used `object-contain` with
+  **no height constraint** — the safest possible pattern, since the `img`
+  simply renders at its full natural aspect ratio scaled to width; no
+  cropping is possible. Verified rendered result directly (not just the
+  class name): complete circular visible, no text/border/date/signature
+  cropped, on both the `.webp` files themselves and in the live page.
+  Download and registration links (`POORTHY_APPL_2024.pdf`, the Google
+  Form) were untouched and confirmed still present.
+- Added a **"View full-size announcement ↗"** link under each image
+  (opens the source `.webp` directly in a new tab), plus made the image
+  itself clickable to the same target — satisfying the "if necessarily
+  small on mobile, provide a full-size link" requirement, since a scanned
+  circular displayed at ~350px mobile width can be hard to read closely
+  even though nothing is cropped.
+- Mahotsav announcement imagery (`/assets/shashti.webp`) was already
+  `object-contain` with a generous `max-h-[550px]`; reviewed, no defect
+  found, no change made.
+
+### 13.6 Link and static-resource integrity audit (Task 6)
+
+Full methodology, results, and per-item tables are in
+**`LINK_AND_MEDIA_AUDIT.md`**. Summary: production build served locally
+(`vite preview`), every route crawled with a real headless browser (not
+a static grep), every internal route, external link, and static resource
+extracted from the live DOM and checked directly (HTTP status,
+content-type, size for internal/static; bounded redirect-following
+requests for external). **Zero broken links or missing resources found.**
+One trustee phone number (`98493808377`, 11 digits — unusual for an
+Indian mobile number) was flagged for owner confirmation but **not
+changed**, since trustee contact data is authoritative content outside
+the scope of the one approved name correction.
+
+Two new regression test files were added:
+`client/src/App.routes.test.tsx` (renders all 22 route variants —
+including the query-param and dynamic `:id` cases — and the 404
+fallback, asserting each produces real content) and
+`client/src/lib/staticResources.test.ts` (asserts the PDF/webp files
+referenced by download links and the announcement circulars still exist
+on disk with non-zero size, plus both the preserved originals and the
+regenerated `.webp` files from 13.3).
+
+### 13.7 Rendered visual QA (Task 7)
+
+Crawled all 18 routes (every route in `App.tsx`, plus the 5
+`/announcements/:id` variants and the `?view=` query-param case, plus a
+deliberately-invalid route) at 1440×900 and 390×844 against the served
+production build. Zero horizontal overflow, zero broken images
+(`naturalWidth === 0`), zero browser console errors, on every single
+combination. Full-page screenshots captured for every route/viewport
+combination; additional targeted screenshots for the Poorthy galleries,
+the Mission page's Acharyas photo, and the homepage, specifically to
+visually confirm the Task 2–5 fixes (see 13.4's screenshot-methodology
+note for one investigated false alarm).
+
+### 13.8 Automated quality gate (Task 8)
+
+- `npm ci`: hit a transient Windows file-lock (`EPERM`) on a native
+  binary (`lightningcss`'s prebuilt `.node` file) unrelated to any code
+  change here — dependencies were not modified this session. The lock
+  persisted across two retries; rather than force-kill unrelated
+  processes on a shared machine, repaired the resulting partial
+  `node_modules` with `npm install` (added/reconciled to 257 packages,
+  **0 vulnerabilities**) and proceeded. Worth re-running `npm ci` in a
+  clean CI environment before merge to confirm it's specific to this
+  machine's file-locking, not a real dependency problem.
+- `npm run check` (`tsc`): **0 errors**.
+- `npm run test` (`vitest run`): **58/58 passing** (the pre-existing 27,
+  plus 23 new route-smoke tests and 8 new static-resource-existence
+  tests added this pass).
+- `npm run build`: succeeds, ~13s, output hashes stable across repeated
+  builds (confirms no non-determinism was introduced).
+- `npm audit`: **0 vulnerabilities**. `--force` was not used at any point.
+
+### 13.9 Remaining limitations / items for owner confirmation
+
+- The trustee phone number `98493808377` (11 digits) noted in 13.6 —
+  please confirm the correct number; not changed without approval.
+- `npm ci` should be re-run once in a clean environment (see 13.8) to
+  confirm the file-lock was machine-specific.
+- External links (Login, YouTube, Google Maps, 2 Google Forms) all
+  resolved with a final `200` at audit time; being third-party
+  destinations, they are not permanently guaranteed and should be
+  spot-checked again close to any deploy.

@@ -64,14 +64,16 @@ export default function HeroSection() {
 
           {/* Founder portrait -- a compact thumbnail beside the CTAs on
               mobile, a generously-sized portrait next to the text on
-              desktop (natural 4:5 aspect ratio, not stretched/cropped). */}
+              desktop. Box aspect ratio (3:4) matches the source photo's
+              actual pixel dimensions exactly, so the complete portrait is
+              always shown -- no cropping. */}
           <div style={{ gridArea: "photo" }} className="w-20 shrink-0 self-start sm:w-24 lg:w-full lg:self-center">
             <img
               src="/images/periyavar.webp"
               alt="His Holiness Sri Sri Chandrashekarendra Saraswati MahaSwamigal, founder-inspiration of Veda Rakshana Nidhi Trust"
-              width={640}
-              height={720}
-              className="aspect-[4/5] w-full rounded-lg border border-accent/60 object-cover shadow-lifted"
+              width={900}
+              height={1200}
+              className="aspect-[3/4] w-full rounded-lg border border-accent/60 object-contain bg-muted shadow-lifted"
             />
           </div>
 

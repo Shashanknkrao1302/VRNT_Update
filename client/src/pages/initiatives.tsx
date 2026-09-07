@@ -140,7 +140,7 @@ export default function InitiativesPage({
                   src="/assets/HNY.webp"
                   alt="Father teaching son under HNY scheme"
                   loading="lazy"
-                  className="h-auto max-h-[420px] w-full object-cover"
+                  className="h-auto max-h-[420px] w-full object-contain"
                 />
               </div>
               <p className="mt-3 text-center font-serif text-sm font-bold text-primary">

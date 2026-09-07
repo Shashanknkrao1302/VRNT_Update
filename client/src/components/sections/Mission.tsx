@@ -84,12 +84,12 @@ export default function Mission() {
           {/* Right Block: Side Cards Stack */}
           <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 xl:mt-14 xl:grid-cols-1">
             <div className="flex flex-col gap-4 rounded-lg border border-border bg-surface p-5 shadow-soft">
-              <div className="h-[180px] w-full overflow-hidden rounded-md border border-border">
+              <div className="h-[180px] w-full overflow-hidden rounded-md border border-border bg-muted flex items-center justify-center">
                 <img
                   src="/assets/Kanchi_shankaracharyas_1768738006479.webp"
                   alt="An archival photograph of the Kanchi Kamakoti Peetam Acharyas under whose guidance the Trust operates"
                   loading="lazy"
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-contain"
                 />
               </div>
               <h2 className="m-0 font-serif text-xl font-bold text-primary">Vedic Heritage</h2>

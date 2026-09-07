@@ -32,21 +32,41 @@ function PoorthySeptCircular() {
     <div className="flex flex-col gap-8">
       <div className="rounded-xl border border-border bg-surface p-4 shadow-soft">
         <h2 className="mb-3 text-center font-serif text-lg font-bold text-primary">English Notification</h2>
-        <img
-          src="/assets/announcement/poorthy-september-en.webp"
-          alt="Poorthy Pariksha circular, English notification"
-          loading="lazy"
-          className="w-full rounded-lg border border-border object-contain"
-        />
+        <a href="/assets/announcement/poorthy-september-en.webp" target="_blank" rel="noopener noreferrer">
+          <img
+            src="/assets/announcement/poorthy-september-en.webp"
+            alt="Poorthy Pariksha circular, English notification"
+            loading="lazy"
+            className="w-full rounded-lg border border-border object-contain"
+          />
+        </a>
+        <a
+          href="/assets/announcement/poorthy-september-en.webp"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-2 inline-flex min-h-9 items-center gap-1.5 font-sans text-sm font-bold text-primary hover:underline"
+        >
+          View full-size announcement ↗
+        </a>
       </div>
       <div className="rounded-xl border border-border bg-surface p-4 shadow-soft">
         <h2 className="mb-3 text-center font-serif text-lg font-bold text-primary">Tamil Notification (சுற்றறிக்கை)</h2>
-        <img
-          src="/assets/announcement/poorthy-september-ta.webp"
-          alt="Poorthy Pariksha circular, Tamil notification"
-          loading="lazy"
-          className="w-full rounded-lg border border-border object-contain"
-        />
+        <a href="/assets/announcement/poorthy-september-ta.webp" target="_blank" rel="noopener noreferrer">
+          <img
+            src="/assets/announcement/poorthy-september-ta.webp"
+            alt="Poorthy Pariksha circular, Tamil notification"
+            loading="lazy"
+            className="w-full rounded-lg border border-border object-contain"
+          />
+        </a>
+        <a
+          href="/assets/announcement/poorthy-september-ta.webp"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-2 inline-flex min-h-9 items-center gap-1.5 font-sans text-sm font-bold text-primary hover:underline"
+        >
+          View full-size announcement ↗
+        </a>
       </div>
     </div>
   );

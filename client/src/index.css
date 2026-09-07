@@ -87,13 +87,22 @@
   --background: 42 38% 95%;
   --foreground: 20 20% 12%;
 
-  /* Card/surface: slightly lifted off the page background */
-  --surface: 40 32% 98%;
+  /* Card/surface. Previously 40 32% 98% -- at 98% lightness this computes
+     to roughly rgb(251,250,248), i.e. reads as near-pure white on screen
+     regardless of hue/saturation (tester-reported eye strain from large
+     bright card surfaces used on every page). Pulled back to 94%
+     lightness (~rgb(244,241,235)) -- a shade deeper than --background
+     (95%, ~rgb(247,244,237)) rather than lighter, so no surface on the
+     site is ever brighter than the page itself. Cards still read as
+     distinct thanks to the border + shadow-soft/shadow-lifted utilities
+     already applied everywhere they're used; the lift comes from depth
+     cues, not raw brightness. */
+  --surface: 38 30% 94%;
   --surface-foreground: 20 20% 12%;
-  --card: 40 32% 98%;
+  --card: 38 30% 94%;
   --card-foreground: 20 20% 12%;
 
-  --popover: 40 32% 98%;
+  --popover: 38 30% 94%;
   --popover-foreground: 20 20% 12%;
 
   /* Deep maroon - primary brand colour (matches the trust's established identity) */

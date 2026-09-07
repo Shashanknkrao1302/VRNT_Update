@@ -74,7 +74,16 @@ async function optimizeOne(publicPath) {
   const outFull = srcFull.replace(/\.(jpg|jpeg|png|JPG|JPEG|PNG)$/, ".webp");
   const originalSize = fs.statSync(srcFull).size;
 
-  let pipeline = sharp(srcFull);
+  // .rotate() with no arguments auto-orients the pixel data according to
+  // the source's EXIF Orientation tag (e.g. phone photos stored landscape
+  // with a "rotate 90deg to display" flag) *before* any resize happens.
+  // Without this, a portrait photo whose sensor stored it as landscape
+  // pixels + an orientation tag gets that raw, un-rotated data baked into
+  // the .webp with no tag left to correct it -- rendering sideways in the
+  // browser. Sharp's own rotate() strips/normalizes the orientation tag
+  // once it has physically applied it, so no extra metadata handling is
+  // needed afterwards.
+  let pipeline = sharp(srcFull).rotate();
   const meta = await pipeline.metadata();
 
   if (publicPath === LOGO) {
