@@ -46,8 +46,7 @@ export const SITE_CONTENT = {
     { name: "R RAMAKRISHNAN", role: "TRUSTEE", contact: "9844092056", email: "ram65.vidya@gmail.com", address: "86, 1 ST STAGE, GRUHALAKSHMI LAYOUT, BASAVESHWARA NAGAR, BANGALORE NORTH 560079" },
     { name: "SANKARAN R", role: "TRUSTEE", contact: "9381044325", email: "r_sankaran12@hotmail.com", address: "3-A NARAYANA FLATS, NO.24, GOPALAKRISHNAN STREET, T NAGAR, CHENNAI-600 017" },
     { name: "SANKARANARAYANAN SWAMINATHAN", role: "TRUSTEE", contact: "9715770855", email: "2020sankaranarayanan@gmail.com", address: "NO 6/63 (679) WEST STREEET, MUDIKONDAN 609502" },
-    { name: "V JAYARAMAN", role: "TRUSTEE", contact: "044-24985051", email: "2020viayaraman@gmail.com", address: "FLAT NO.5, 95, LUZ CHURCH ROAD, MYLAPORE, CHENNAI-600 004" },
-    { name: "VISWANATHAN K", role: "TRUSTEE", contact: "9444158326", email: "MSV4041@yahoo.com", address: "FLAT NO B-3 KRISH APARTMENT, NO 77 THAMBIAH ROAD, WEST MAMBALAM, CHENNAI 600033" }
+    { name: "V JAYARAMAN", role: "TRUSTEE", contact: "044-24985051", email: "2020viayaraman@gmail.com", address: "FLAT NO.5, 95, LUZ CHURCH ROAD, MYLAPORE, CHENNAI-600 004" }
   ],
   supportSchemes: [
     {
