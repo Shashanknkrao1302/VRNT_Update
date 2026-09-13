@@ -1,9 +1,11 @@
 import { MapPin, Phone, Mail, User } from "lucide-react";
 import { Helmet } from "@/lib/seo";
 
-export default function ContactPage() {
-  const mapEmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.850383745237!2d80.22295677507772!3d13.04429388727806!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a526654019a97d9%3A0xe744e45e9a4f6d4!2sVeda%20Rakshana%20Nidhi%20Trust!5e0!3m2!1sen!2sin!4v1715694850000!5m2!1sen!2sin";
+const trustOfficeCoordinates = "13.0420117,80.2185979";
+const mapEmbedUrl = `https://www.google.com/maps?q=${trustOfficeCoordinates}&z=18&output=embed`;
+const mapPlaceUrl = "https://www.google.com/maps/place/Veda+Rakshana+Nidhi+Trust/@13.042012,80.218598,17z/data=!4m6!3m5!1s0x3a5266e4f3e570e7:0x6a30ff60f367c168!8m2!3d13.0420117!4d80.2185979!16s%2Fg%2F1q5bp0tn_";
 
+export default function ContactPage() {
   return (
     <>
       <Helmet
@@ -66,12 +68,12 @@ export default function ContactPage() {
             <div className="flex items-center justify-between">
               <h2 className="m-0 font-serif text-xl font-bold text-foreground">Trust Office Location</h2>
               <a
-                href="https://maps.app.goo.gl/xdfx7FaqMtYeCpEB8"
+                href={mapPlaceUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex min-h-9 items-center gap-1 font-sans text-xs font-bold uppercase tracking-wider text-accent-strong no-underline hover:underline"
               >
-                Directions ↗
+                Open in Maps ↗
               </a>
             </div>
 
