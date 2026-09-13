@@ -6,10 +6,14 @@ describe("ContactPage map location", () => {
   it("uses the verified trust office pin for the embed and external map link", () => {
     render(<ContactPage />);
 
-    expect(screen.getByTitle(/google maps location/i)).toHaveAttribute(
+    const mapPreview = screen.getByTitle(/google maps location/i);
+
+    expect(mapPreview).toHaveAttribute(
       "src",
       "https://www.google.com/maps?q=13.0420117,80.2185979&z=18&output=embed",
     );
+    expect(mapPreview).toHaveClass("pointer-events-none");
+    expect(mapPreview).toHaveAttribute("tabindex", "-1");
     expect(screen.getByRole("link", { name: /open in maps/i })).toHaveAttribute(
       "href",
       expect.stringContaining("!3d13.0420117!4d80.2185979"),
