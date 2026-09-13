@@ -86,8 +86,9 @@ export default function ContactPage() {
                 allowFullScreen={true}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
+                tabIndex={-1}
                 title="Google Maps location of Veda Rakshana Nidhi Trust, West Mambalam, Chennai"
-                className="h-full w-full rounded-lg"
+                className="pointer-events-none h-full w-full rounded-lg"
               ></iframe>
 
               <div className="mt-2 rounded-full border border-border bg-surface px-3 py-0.5 font-serif text-[11px] italic text-muted-foreground shadow-soft">
