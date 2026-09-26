@@ -10,6 +10,25 @@ describe("announcements model", () => {
   it("getFeaturedAnnouncement returns the featured one", () => {
     const featured = getFeaturedAnnouncement();
     expect(featured.priority).toBe("featured");
+    expect(featured.id).toBe("vijaya-dasami-poorthy-results-2026");
+  });
+
+  it("publishes the official Vijaya Dasami result PDF with view and download actions", () => {
+    const result = getAnnouncementById("vijaya-dasami-poorthy-results-2026");
+    expect(result).toBeDefined();
+    expect(result?.actions).toEqual([
+      {
+        type: "external-link",
+        label: "View result PDF",
+        url: "/docs/vijaya-dasami-poorthy-pariksha-results-2026.pdf",
+      },
+      {
+        type: "download-link",
+        label: "Download result PDF",
+        url: "/docs/vijaya-dasami-poorthy-pariksha-results-2026.pdf",
+        filename: "vijaya-dasami-poorthy-pariksha-results-2026.pdf",
+      },
+    ]);
   });
 
   it("every announcement has a unique id", () => {

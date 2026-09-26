@@ -25,12 +25,33 @@ export interface Announcement {
 
 export const ANNOUNCEMENTS: Announcement[] = [
   {
+    id: "vijaya-dasami-poorthy-results-2026",
+    title: "Vijaya Dasami Poorthy Pariksha 2026 - Results",
+    date: "24 September 2026",
+    summary:
+      "Results for the VRNT Vijaya Dasami Poorthy Pariksha conducted from 18 to 21 September 2026 are now available. View or download the official result PDF.",
+    priority: "featured",
+    actions: [
+      {
+        type: "external-link",
+        label: "View result PDF",
+        url: "/docs/vijaya-dasami-poorthy-pariksha-results-2026.pdf",
+      },
+      {
+        type: "download-link",
+        label: "Download result PDF",
+        url: "/docs/vijaya-dasami-poorthy-pariksha-results-2026.pdf",
+        filename: "vijaya-dasami-poorthy-pariksha-results-2026.pdf",
+      },
+    ],
+  },
+  {
     id: "poorthy-sept",
     title: "Vijaya Dasami Poorthy Exam (September)",
     date: "2026",
     summary:
       "Schedules, registration parameters, and venue assignments for the upcoming Vijaya Dasami Poorthy Examination scheduled for September 2026.",
-    priority: "featured",
+    priority: "normal",
     actions: [
       { type: "internal-link", label: "View exam details", targetPath: "/announcements/poorthy-sept" },
       {
