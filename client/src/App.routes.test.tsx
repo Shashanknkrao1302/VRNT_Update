@@ -27,6 +27,7 @@ const ROUTES = [
   "/mahotsav",
   "/pariksha-result",
   "/announcements",
+  "/announcements/vijaya-dasami-poorthy-results-2026",
   "/announcements/poorthy-sept",
   "/announcements/vrnt-mahotsav",
   "/announcements/shankara-jayanti-result",
