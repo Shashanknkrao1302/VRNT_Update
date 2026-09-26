@@ -10,6 +10,12 @@ import { Helmet } from "@/lib/seo";
  */
 const NEWS_ITEMS: { title: string; year: string; to: string; download?: { href: string; label: string } }[] = [
   {
+    title: "Vijaya Dasami Poorthy Pariksha 2026 - Results",
+    year: "2026",
+    to: "/announcements/vijaya-dasami-poorthy-results-2026",
+    download: { href: "/docs/vijaya-dasami-poorthy-pariksha-results-2026.pdf", label: "Download result PDF" },
+  },
+  {
     title: "2026 Shankara Jayanti Veda Pariksha Result",
     year: "2026",
     to: "/announcements/shankara-jayanti-result",
