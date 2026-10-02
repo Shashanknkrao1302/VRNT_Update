@@ -100,6 +100,13 @@ const GALLERY_IMAGES = [
     category: "Vedic Event",
     description: "Sacred gatherings and Vidwat Sabha proceedings organized under VRNT.",
     albumUrl: null
+  },
+  {
+    url: "/assets/sandur-1979-maha-periyava.webp",
+    title: "Historical Blessing at Sandur (1979)",
+    category: "Archival History (1979)",
+    description: "His Holiness Sri Chandrasekharendra Saraswathi Mahaswamigal (Maha Periyava) at Eashwaraswamy Temple, Sandur (1979). Standing alongside Sri Annathurai Iyengar is Late Sri Musiri Krishna Rao, a revered Madhwa scholar who assisted in conducting VRNT Veda examinations. (Photo by Sandur Maharaja)",
+    albumUrl: null
   }
 ];
 

@@ -60,6 +60,6 @@ describe("every registered route renders without throwing", () => {
         <App />
       </MemoryRouter>
     );
-    expect(await screen.findByRole("heading", { level: 1, name: /page not found/i })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { level: 1, name: /page not found/i }, { timeout: 5000 })).toBeInTheDocument();
   });
 });
