@@ -399,22 +399,13 @@ export default function History({
               </div>
             </div>
 
-            <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch my-2">
+            <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch my-2">
               <div className="bg-surface p-3 border border-border rounded-lg shadow-soft flex flex-col items-center justify-center overflow-hidden">
                 <img
                   src="/history/IMG-20260716-WA0008.webp"
                   alt="Photograph of Sri Mahaperiyava accompanying the account of Sri Annadurai Iyengar's Vedic service"
                   loading="lazy"
-                  className="w-full h-48 object-contain rounded"
-                  onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-                />
-              </div>
-              <div className="bg-surface p-3 border border-border rounded-lg shadow-soft flex flex-col items-center justify-center overflow-hidden">
-                <img
-                  src="/history/IMG-20260716-WA0009.webp"
-                  alt="Photograph of Sri Mahaperiyava giving a discourse, accompanying the account of Sri Annadurai Iyengar's Vedic service"
-                  loading="lazy"
-                  className="w-full h-48 object-contain rounded"
+                  className="w-full h-52 object-contain rounded"
                   onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
                 />
               </div>
@@ -423,7 +414,7 @@ export default function History({
                   src="/assets/sandur-1979-maha-periyava.webp"
                   alt="Maha Periyava at Eashwaraswamy Temple Sandur (1979) with Sri Annathurai Iyengar and Late Sri Musiri Krishna Rao"
                   loading="lazy"
-                  className="w-full h-48 object-contain rounded"
+                  className="w-full h-52 object-contain rounded"
                 />
                 <p className="text-xs text-muted-foreground font-serif italic mt-2 text-center">
                   Sandur (1979): Maha Periyava with Sri Annathurai Iyengar & Late Sri Musiri Krishna Rao (Photo: Sandur Maharaja)
