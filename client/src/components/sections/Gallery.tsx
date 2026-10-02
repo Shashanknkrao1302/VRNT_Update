@@ -21,6 +21,13 @@ const GALLERY_IMAGES = [
     albumUrl: null
   },
   {
+    url: "/assets/sandur-1979-maha-periyava.webp",
+    title: "Historical Blessing at Sandur (1979)",
+    category: "Archival History (1979)",
+    description: "His Holiness Sri Chandrasekharendra Saraswathi Mahaswamigal (Maha Periyava) at Eashwaraswamy Temple, Sandur (1979). Standing alongside Sri Annathurai Iyengar is Late Sri Musiri Krishna Rao, a revered Madhwa scholar who assisted in conducting VRNT Veda examinations. (Photo by Sandur Maharaja)",
+    albumUrl: null
+  },
+  {
     url: "/assets/jayendra_saraswathi.jpg",
     title: "69th Jagadguru Shankaracharya",
     category: "Acharya",
@@ -99,13 +106,6 @@ const GALLERY_IMAGES = [
     title: "Veda Rakshana Nidhi Trust Sabha",
     category: "Vedic Event",
     description: "Sacred gatherings and Vidwat Sabha proceedings organized under VRNT.",
-    albumUrl: null
-  },
-  {
-    url: "/assets/sandur-1979-maha-periyava.webp",
-    title: "Historical Blessing at Sandur (1979)",
-    category: "Archival History (1979)",
-    description: "His Holiness Sri Chandrasekharendra Saraswathi Mahaswamigal (Maha Periyava) at Eashwaraswamy Temple, Sandur (1979). Standing alongside Sri Annathurai Iyengar is Late Sri Musiri Krishna Rao, a revered Madhwa scholar who assisted in conducting VRNT Veda examinations. (Photo by Sandur Maharaja)",
     albumUrl: null
   }
 ];
@@ -251,7 +251,7 @@ export default function GalleryPage() {
                         <h2 className="text-white font-serif text-2xl md:text-3xl font-bold mb-1.5 drop-shadow-md">
                           {currentImage.title}
                         </h2>
-                        <p className="text-white/90 text-sm md:text-base font-serif italic drop-shadow-xs m-0 line-clamp-2">
+                        <p className="text-white/90 text-sm md:text-base font-serif italic drop-shadow-xs m-0">
                           {currentImage.description}
                         </p>
                       </div>
