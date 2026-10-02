@@ -1,4 +1,5 @@
 import React, { useState, useRef, useLayoutEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Play, ExternalLink, Calendar, Award, ChevronLeft, ChevronRight } from "lucide-react";
 import { Helmet } from "@/lib/seo";
 
@@ -109,10 +110,13 @@ export default function History({
   subView: externalSubView,
   setSubView: externalSetSubView
 }: HistoryProps) {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const queryView = searchParams.get('view');
+
   const [internalSubView, setInternalSubView] = useState<string | null>(null);
   const [currentAchieveIndex, setCurrentAchieveIndex] = useState(0);
 
-  const activeSubView = externalSubView !== undefined ? externalSubView : internalSubView;
+  const activeSubView = externalSubView !== undefined ? externalSubView : (queryView || internalSubView);
 
   // Managed navigation that preserves scroll state (exact same as Pariksha)
   const handleSetSubView = (view: string | null) => {
@@ -126,6 +130,7 @@ export default function History({
       } else {
         setInternalSubView(view);
       }
+      setSearchParams({ view });
 
       // 2. Scroll to top for the sub-view page
       window.scrollTo(0, 0);
@@ -136,6 +141,7 @@ export default function History({
       } else {
         setInternalSubView(null);
       }
+      setSearchParams({});
     }
   };
 
@@ -339,7 +345,7 @@ export default function History({
   /* --------------------------------------------------------------------------
      3. PROFILE DETAIL SUB-VIEW (Sri Annadurai Iyengar)
   -------------------------------------------------------------------------- */
-  if (activeSubView === 'annadurai') {
+  if (activeSubView === 'annadurai' || activeSubView === 'annadurai-iyengar') {
     const selected = historyProfiles.find(p => p.id === 'annadurai');
     if (!selected) return null;
 
@@ -394,23 +400,25 @@ export default function History({
             </div>
 
             <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch my-2">
-              <div className="bg-surface p-3 border border-border rounded-lg shadow-soft flex items-center justify-center overflow-hidden max-h-[300px]">
+              <div className="bg-surface p-3 border border-border rounded-lg shadow-soft flex flex-col items-center justify-center overflow-hidden">
                 <img
                   src="/history/IMG-20260716-WA0008.webp"
                   alt="Photograph of Sri Mahaperiyava accompanying the account of Sri Annadurai Iyengar's Vedic service"
                   loading="lazy"
-                  className="w-full h-full object-contain rounded"
+                  className="w-full h-52 object-contain rounded"
                   onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
                 />
               </div>
-              <div className="bg-surface p-3 border border-border rounded-lg shadow-soft flex items-center justify-center overflow-hidden max-h-[300px]">
+              <div className="bg-surface p-3 border border-border rounded-lg shadow-soft flex flex-col items-center justify-center overflow-hidden">
                 <img
-                  src="/history/IMG-20260716-WA0009.webp"
-                  alt="Photograph of Sri Mahaperiyava giving a discourse, accompanying the account of Sri Annadurai Iyengar's Vedic service"
+                  src="/assets/sandur-1979-maha-periyava.webp"
+                  alt="Maha Periyava at Eashwaraswamy Temple Sandur (1979) with Sri Annathurai Iyengar and Late Sri Musiri Krishna Rao"
                   loading="lazy"
-                  className="w-full h-full object-contain rounded"
-                  onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                  className="w-full h-52 object-contain rounded"
                 />
+                <p className="text-xs text-muted-foreground font-serif italic mt-2 text-center">
+                  Sandur (1979): Maha Periyava with Sri Annathurai Iyengar & Late Sri Musiri Krishna Rao (Photo: Sandur Maharaja)
+                </p>
               </div>
             </div>
 
@@ -491,6 +499,22 @@ export default function History({
                 <h3 className="text-primary font-bold text-lg m-0 leading-snug">{profile.title}</h3>
                 <span className="text-[11px] font-sans font-bold text-accent-strong uppercase tracking-wider mt-1 block">({profile.subtitle})</span>
                 <p className="text-muted-foreground text-xs md:text-sm mt-3 line-clamp-3 text-justify leading-relaxed m-0">{profile.previewText}</p>
+              </div>
+            </div>
+
+            {/* Featured 1979 Sandur Archival Photo Preview */}
+            <div className="mt-4 pt-3 border-t border-border flex items-center gap-3 bg-background/80 p-2.5 rounded-lg border border-border/70">
+              <img
+                src="/assets/sandur-1979-maha-periyava.webp"
+                alt="1979 Sandur Archival Photo preview featuring Maha Periyava, Sri Annathurai Iyengar and Late Sri Musiri Krishna Rao"
+                loading="lazy"
+                className="w-16 h-14 object-contain rounded border border-accent/40 bg-black/5 shrink-0"
+              />
+              <div className="flex flex-col text-left">
+                <span className="text-[10px] font-sans font-bold uppercase tracking-wider text-accent-strong">Featured Archival Photo (1979)</span>
+                <span className="text-xs font-serif italic text-foreground/90 leading-tight mt-0.5">
+                  Maha Periyava with Sri Annathurai Iyengar & Late Sri Musiri Krishna Rao (Photo: Sandur Maharaja)
+                </span>
               </div>
             </div>
 
