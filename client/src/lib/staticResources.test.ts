@@ -15,6 +15,7 @@ const EXPECTED_FILES = [
   "assets/forms/POORTHY_APPL_2024.pdf",
   "docs/SJ_2026_MARK_SHEET_RESULT_pdf_1777194961207.pdf",
   "docs/vijaya-dasami-poorthy-pariksha-results-2026.pdf",
+  "docs/VRNT_Staff_Registration_Campaign.docx",
   // Poorthy September announcement circulars (English & Tamil)
   "assets/announcement/poorthy-september-en.webp",
   "assets/announcement/poorthy-september-ta.webp",

@@ -10,6 +10,12 @@ import { Helmet } from "@/lib/seo";
  */
 const NEWS_ITEMS: { title: string; year: string; to: string; download?: { href: string; label: string } }[] = [
   {
+    title: "VRNT Staff Registration Campaign — Paatashala Cooperation",
+    year: "2026",
+    to: "/announcements/staff-registration-campaign",
+    download: { href: "/docs/VRNT_Staff_Registration_Campaign.docx", label: "Download circular (.docx)" },
+  },
+  {
     title: "Vijaya Dasami Poorthy Pariksha 2026 - Results",
     year: "2026",
     to: "/announcements/vijaya-dasami-poorthy-results-2026",

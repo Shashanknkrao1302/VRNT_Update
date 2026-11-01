@@ -72,6 +72,74 @@ function PoorthySeptCircular() {
   );
 }
 
+function StaffRegistrationCircular() {
+  return (
+    <div className="flex flex-col gap-6 rounded-xl border border-border bg-surface p-6 shadow-soft sm:p-8">
+      <div className="border-b border-border pb-4">
+        <h2 className="font-serif text-xl font-bold text-primary sm:text-2xl">
+          VRNT Staff Registration Campaign
+        </h2>
+        <p className="mt-1 font-sans text-sm font-semibold text-accent-strong">
+          Request for Cooperation from All Paatashalas
+        </p>
+      </div>
+
+      <div className="space-y-4 text-sm leading-relaxed text-foreground/90">
+        <p>
+          VRNT is conducting a Staff Registration Campaign to maintain accurate and up-to-date records of Paatashala
+          Administrators, Adhyapakars, and Vidyarthis, and to simplify access to VRNT’s services.
+        </p>
+        <p>
+          We request every Paatashala to support this initiative by ensuring that its Paatashala Administrators and
+          Adhyapakars complete registration through the campaign link shared with them.
+        </p>
+      </div>
+
+      <div className="rounded-lg border border-border bg-background p-5">
+        <h3 className="font-serif text-base font-bold text-primary">The campaign will support the following objectives:</h3>
+        <ul className="mt-3 space-y-2.5 text-sm text-foreground/90">
+          <li>
+            <strong className="text-foreground">Vidyarthi Enrollment:</strong> Enable authorized Adhyapakars to enroll Vidyarthis and maintain their details under the respective Paatashala.
+          </li>
+          <li>
+            <strong className="text-foreground">Poorthy and Varshikam Examinations:</strong> Provide accurate student and Paatashala records to support applications and related processes for Poorthy and Varshikam examinations.
+          </li>
+          <li>
+            <strong className="text-foreground">Ease of Use:</strong> Help applicants complete registration and examination-related procedures more conveniently, with less repeated entry of information already recorded in the system.
+          </li>
+          <li>
+            <strong className="text-foreground">Data Security and Confidentiality:</strong> Registration information will be handled confidentially, with access restricted to authorized personnel for relevant VRNT activities.
+          </li>
+          <li>
+            <strong className="text-foreground">No Sharing with Other Organizations:</strong> Information collected through this campaign will be used exclusively for VRNT’s registration, educational, examination, and administrative purposes.
+          </li>
+        </ul>
+      </div>
+
+      <div className="rounded-lg border border-border bg-background p-5">
+        <h3 className="font-serif text-base font-bold text-primary">How to Register</h3>
+        <ol className="mt-3 list-decimal space-y-2 pl-5 text-sm text-foreground/90">
+          <li>WhatsApp messages will be sent out to Paatashalas based on available contact records with VRNT, containing a campaign registration link.</li>
+          <li>Applicants should open the campaign link, verify their mobile number with the OTP received, select the applicable role (<strong>Paatashala Admin</strong>, <strong>Adhyapakar</strong>, or <strong>both</strong>), and submit the required details accurately.</li>
+          <li>Applications will be scrutinized by a VRNT Trustee. Upon approval, applicants will receive their VRNT ID and instructions to set up their password and activate access to the VRNT system.</li>
+        </ol>
+      </div>
+
+      <div className="space-y-3 text-sm text-foreground/90">
+        <p>
+          We kindly request Paatashala managements to share the registration link with the concerned staff members and assist them in completing registration promptly. Your cooperation will help make Vidyarthi enrollment and examination-related services more convenient and effective.
+        </p>
+        <p className="font-semibold text-primary">
+          For assistance or clarification, please contact the VRNT office.
+        </p>
+        <p className="font-sans text-xs uppercase tracking-wider text-muted-foreground">
+          — VRNT Administration
+        </p>
+      </div>
+    </div>
+  );
+}
+
 export default function AnnouncementsPage() {
   const { id } = useParams<{ id: string }>();
   const announcement = id ? getAnnouncementById(id) : undefined;
@@ -107,6 +175,12 @@ export default function AnnouncementsPage() {
             {announcement.actions.map((action, i) => (
               <ActionLink key={i} action={action} />
             ))}
+          </div>
+        )}
+
+        {announcement.id === "staff-registration-campaign" && (
+          <div className="mt-10 border-t border-border pt-8">
+            <StaffRegistrationCircular />
           </div>
         )}
 

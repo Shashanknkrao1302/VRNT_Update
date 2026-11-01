@@ -25,12 +25,33 @@ export interface Announcement {
 
 export const ANNOUNCEMENTS: Announcement[] = [
   {
+    id: "staff-registration-campaign",
+    title: "VRNT Staff Registration Campaign — Paatashala Cooperation",
+    date: "November 2026",
+    summary:
+      "VRNT is conducting a Staff Registration Campaign for Paatashala Admins and Adhyapakars to streamline Vidyarthi enrollments and examinations. Paatashalas are requested to complete registration via the link sent over WhatsApp.",
+    priority: "featured",
+    actions: [
+      {
+        type: "internal-link",
+        label: "View campaign details",
+        targetPath: "/announcements/staff-registration-campaign",
+      },
+      {
+        type: "download-link",
+        label: "Download circular (.docx)",
+        url: "/docs/VRNT_Staff_Registration_Campaign.docx",
+        filename: "VRNT_Staff_Registration_Campaign.docx",
+      },
+    ],
+  },
+  {
     id: "vijaya-dasami-poorthy-results-2026",
     title: "Vijaya Dasami Poorthy Pariksha 2026 - Results",
     date: "24 September 2026",
     summary:
       "Results for the VRNT Vijaya Dasami Poorthy Pariksha conducted from 18 to 21 September 2026 are now available. View or download the official result PDF.",
-    priority: "featured",
+    priority: "normal",
     actions: [
       {
         type: "external-link",
