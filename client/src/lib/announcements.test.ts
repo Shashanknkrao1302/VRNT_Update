@@ -10,7 +10,7 @@ describe("announcements model", () => {
   it("getFeaturedAnnouncement returns the featured one", () => {
     const featured = getFeaturedAnnouncement();
     expect(featured.priority).toBe("featured");
-    expect(featured.id).toBe("vijaya-dasami-poorthy-results-2026");
+    expect(featured.id).toBe("staff-registration-campaign");
   });
 
   it("publishes the official Vijaya Dasami result PDF with view and download actions", () => {
@@ -27,6 +27,24 @@ describe("announcements model", () => {
         label: "Download result PDF",
         url: "/docs/vijaya-dasami-poorthy-pariksha-results-2026.pdf",
         filename: "vijaya-dasami-poorthy-pariksha-results-2026.pdf",
+      },
+    ]);
+  });
+
+  it("publishes the VRNT Staff Registration Campaign with details and download actions", () => {
+    const campaign = getAnnouncementById("staff-registration-campaign");
+    expect(campaign).toBeDefined();
+    expect(campaign?.actions).toEqual([
+      {
+        type: "internal-link",
+        label: "View campaign details",
+        targetPath: "/announcements/staff-registration-campaign",
+      },
+      {
+        type: "download-link",
+        label: "Download circular (.docx)",
+        url: "/docs/VRNT_Staff_Registration_Campaign.docx",
+        filename: "VRNT_Staff_Registration_Campaign.docx",
       },
     ]);
   });

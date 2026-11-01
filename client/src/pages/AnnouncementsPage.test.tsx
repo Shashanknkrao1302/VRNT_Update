@@ -24,22 +24,27 @@ describe("AnnouncementsPage", () => {
   });
 
   it("renders each action type with correct semantics on a detail view", async () => {
-    const withActions = ANNOUNCEMENTS.find((a) => a.actions.length > 0)!;
-    renderAt(`/announcements/${withActions.id}`);
-    expect(await screen.findByRole("heading", { name: withActions.title })).toBeInTheDocument();
+    // Test with an announcement having actions
+    for (const item of ANNOUNCEMENTS.filter((a) => a.actions.length > 0)) {
+      const { unmount } = renderAt(`/announcements/${item.id}`);
+      expect(await screen.findByRole("heading", { name: item.title })).toBeInTheDocument();
 
-    for (const action of withActions.actions) {
-      const link = screen.getByRole("link", { name: new RegExp(action.label, "i") });
-      if (action.type === "external-link") {
-        expect(link).toHaveAttribute("target", "_blank");
-        expect(link.getAttribute("rel")).toContain("noopener");
+      for (const action of item.actions) {
+        // Look up by escaped label regex
+        const escapedLabel = action.label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        const link = screen.getByRole("link", { name: new RegExp(escapedLabel, "i") });
+        if (action.type === "external-link") {
+          expect(link).toHaveAttribute("target", "_blank");
+          expect(link.getAttribute("rel")).toContain("noopener");
+        }
+        if (action.type === "download-link") {
+          expect(link).toHaveAttribute("download", action.filename);
+        }
+        if (action.type === "internal-link") {
+          expect(link).toHaveAttribute("href", action.targetPath);
+        }
       }
-      if (action.type === "download-link") {
-        expect(link).toHaveAttribute("download", action.filename);
-      }
-      if (action.type === "internal-link") {
-        expect(link).toHaveAttribute("href", action.targetPath);
-      }
+      unmount();
     }
   });
 
