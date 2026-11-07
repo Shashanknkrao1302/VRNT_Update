@@ -73,6 +73,39 @@ function PoorthySeptCircular() {
 }
 
 function StaffRegistrationCircular() {
+  const regionalCirculars = [
+    {
+      lang: "English",
+      native: "English",
+      url: "/docs/announcements/staff-registration-campaign/registration-campaign-english.pdf",
+      filename: "VRNT_Staff_Registration_Campaign_English.pdf",
+    },
+    {
+      lang: "Tamil",
+      native: "தமிழ்",
+      url: "/docs/announcements/staff-registration-campaign/registration-campaign-tamil.pdf",
+      filename: "VRNT_Staff_Registration_Campaign_Tamil.pdf",
+    },
+    {
+      lang: "Telugu",
+      native: "తెలుగు",
+      url: "/docs/announcements/staff-registration-campaign/registration-campaign-telugu.pdf",
+      filename: "VRNT_Staff_Registration_Campaign_Telugu.pdf",
+    },
+    {
+      lang: "Kannada",
+      native: "ಕನ್ನಡ",
+      url: "/docs/announcements/staff-registration-campaign/registration-campaign-kannada.pdf",
+      filename: "VRNT_Staff_Registration_Campaign_Kannada.pdf",
+    },
+    {
+      lang: "Hindi",
+      native: "हिन्दी",
+      url: "/docs/announcements/staff-registration-campaign/registration-campaign-hindi.pdf",
+      filename: "VRNT_Staff_Registration_Campaign_Hindi.pdf",
+    },
+  ];
+
   return (
     <div className="flex flex-col gap-6 rounded-xl border border-border bg-surface p-6 shadow-soft sm:p-8">
       <div className="border-b border-border pb-4">
@@ -82,6 +115,46 @@ function StaffRegistrationCircular() {
         <p className="mt-1 font-sans text-sm font-semibold text-accent-strong">
           Request for Cooperation from All Paatashalas
         </p>
+      </div>
+
+      <div className="rounded-lg border border-accent/40 bg-accent/5 p-4 sm:p-5">
+        <h3 className="font-serif text-base font-bold text-primary">
+          Official Circular in Regional Languages
+        </h3>
+        <p className="mt-1 text-xs text-muted-foreground">
+          Download or view the official circular issued by VRNT Administration in your preferred language:
+        </p>
+        <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
+          {regionalCirculars.map((c) => (
+            <div
+              key={c.lang}
+              className="flex flex-col justify-between rounded-lg border border-border bg-surface p-3.5 shadow-sm"
+            >
+              <div>
+                <span className="font-serif text-base font-bold text-foreground">{c.native}</span>
+                <span className="ml-2 font-sans text-xs text-muted-foreground">({c.lang})</span>
+              </div>
+              <div className="mt-3 flex items-center gap-3 pt-2 border-t border-border">
+                <a
+                  href={c.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 font-sans text-xs font-bold text-primary hover:underline"
+                >
+                  View PDF ↗
+                </a>
+                <span className="text-border">|</span>
+                <a
+                  href={c.url}
+                  download={c.filename}
+                  className="inline-flex items-center gap-1 font-sans text-xs font-bold text-accent-strong hover:underline"
+                >
+                  <Download className="h-3.5 w-3.5" aria-hidden="true" /> Download
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="space-y-4 text-sm leading-relaxed text-foreground/90">

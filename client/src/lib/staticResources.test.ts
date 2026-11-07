@@ -16,6 +16,11 @@ const EXPECTED_FILES = [
   "docs/SJ_2026_MARK_SHEET_RESULT_pdf_1777194961207.pdf",
   "docs/vijaya-dasami-poorthy-pariksha-results-2026.pdf",
   "docs/VRNT_Staff_Registration_Campaign.docx",
+  "docs/announcements/staff-registration-campaign/registration-campaign-english.pdf",
+  "docs/announcements/staff-registration-campaign/registration-campaign-tamil.pdf",
+  "docs/announcements/staff-registration-campaign/registration-campaign-telugu.pdf",
+  "docs/announcements/staff-registration-campaign/registration-campaign-kannada.pdf",
+  "docs/announcements/staff-registration-campaign/registration-campaign-hindi.pdf",
   // Poorthy September announcement circulars (English & Tamil)
   "assets/announcement/poorthy-september-en.webp",
   "assets/announcement/poorthy-september-ta.webp",
