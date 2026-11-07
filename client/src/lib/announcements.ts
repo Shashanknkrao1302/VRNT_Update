@@ -26,10 +26,10 @@ export interface Announcement {
 export const ANNOUNCEMENTS: Announcement[] = [
   {
     id: "staff-registration-campaign",
-    title: "VRNT Staff Registration Campaign — Paatashala Cooperation",
+    title: "Paatashala Admin and Adhyapakar Registration Campaign — VRNT",
     date: "November 2026",
     summary:
-      "VRNT is conducting a Staff Registration Campaign for Paatashala Admins and Adhyapakars. Official circulars are available in English, Tamil, Telugu, Kannada, and Hindi — view details or download.",
+      "VRNT is conducting a Paatashala Admin and Adhyapakar Registration Campaign to streamline Vidyarthi enrollments and examinations. Official circulars are available in English, Tamil, Telugu, Kannada, and Hindi — view details or download.",
     priority: "featured",
     actions: [
       {
