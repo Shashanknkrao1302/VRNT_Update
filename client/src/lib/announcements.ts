@@ -29,19 +29,25 @@ export const ANNOUNCEMENTS: Announcement[] = [
     title: "VRNT Staff Registration Campaign — Paatashala Cooperation",
     date: "November 2026",
     summary:
-      "VRNT is conducting a Staff Registration Campaign for Paatashala Admins and Adhyapakars to streamline Vidyarthi enrollments and examinations. Paatashalas are requested to complete registration via the link sent over WhatsApp.",
+      "VRNT is conducting a Staff Registration Campaign for Paatashala Admins and Adhyapakars. Official circulars are available in English, Tamil, Telugu, Kannada, and Hindi — view details or download.",
     priority: "featured",
     actions: [
       {
         type: "internal-link",
-        label: "View campaign details",
+        label: "View details & circulars (5 Languages)",
         targetPath: "/announcements/staff-registration-campaign",
       },
       {
         type: "download-link",
-        label: "Download circular (.docx)",
-        url: "/docs/VRNT_Staff_Registration_Campaign.docx",
-        filename: "VRNT_Staff_Registration_Campaign.docx",
+        label: "Download English PDF",
+        url: "/docs/announcements/staff-registration-campaign/registration-campaign-english.pdf",
+        filename: "VRNT_Staff_Registration_Campaign_English.pdf",
+      },
+      {
+        type: "download-link",
+        label: "Download Tamil PDF (தமிழ்)",
+        url: "/docs/announcements/staff-registration-campaign/registration-campaign-tamil.pdf",
+        filename: "VRNT_Staff_Registration_Campaign_Tamil.pdf",
       },
     ],
   },

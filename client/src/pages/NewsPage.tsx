@@ -13,7 +13,7 @@ const NEWS_ITEMS: { title: string; year: string; to: string; download?: { href: 
     title: "VRNT Staff Registration Campaign — Paatashala Cooperation",
     year: "2026",
     to: "/announcements/staff-registration-campaign",
-    download: { href: "/docs/VRNT_Staff_Registration_Campaign.docx", label: "Download circular (.docx)" },
+    download: { href: "/docs/announcements/staff-registration-campaign/registration-campaign-english.pdf", label: "Download circular (PDF)" },
   },
   {
     title: "Vijaya Dasami Poorthy Pariksha 2026 - Results",

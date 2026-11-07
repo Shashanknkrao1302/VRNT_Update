@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+﻿import { describe, it, expect } from "vitest";
 import { ANNOUNCEMENTS, getFeaturedAnnouncement, getAnnouncementById } from "./announcements";
 
 describe("announcements model", () => {
@@ -37,14 +37,20 @@ describe("announcements model", () => {
     expect(campaign?.actions).toEqual([
       {
         type: "internal-link",
-        label: "View campaign details",
+        label: "View details & circulars (5 Languages)",
         targetPath: "/announcements/staff-registration-campaign",
       },
       {
         type: "download-link",
-        label: "Download circular (.docx)",
-        url: "/docs/VRNT_Staff_Registration_Campaign.docx",
-        filename: "VRNT_Staff_Registration_Campaign.docx",
+        label: "Download English PDF",
+        url: "/docs/announcements/staff-registration-campaign/registration-campaign-english.pdf",
+        filename: "VRNT_Staff_Registration_Campaign_English.pdf",
+      },
+      {
+        type: "download-link",
+        label: "Download Tamil PDF (தமிழ்)",
+        url: "/docs/announcements/staff-registration-campaign/registration-campaign-tamil.pdf",
+        filename: "VRNT_Staff_Registration_Campaign_Tamil.pdf",
       },
     ]);
   });
