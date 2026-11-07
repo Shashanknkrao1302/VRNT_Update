@@ -94,6 +94,9 @@ export default function HeroSection() {
                   <Bell className="h-4 w-4 text-accent-strong" aria-hidden="true" />
                   <span className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden="true" />
                 </span>
+                <span className="inline-flex shrink-0 items-center rounded-full bg-primary px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-wider text-primary-foreground shadow-sm motion-safe:animate-bounce">
+                  NEW
+                </span>
                 <span className="min-w-0 flex-1 truncate font-sans text-sm font-semibold text-foreground">
                   {featured.title}
                 </span>
@@ -107,10 +110,15 @@ export default function HeroSection() {
                     <Bell className="h-5 w-5" aria-hidden="true" />
                     <span className="absolute -right-0.5 -top-0.5 h-3 w-3 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden="true" />
                   </div>
-                  <div className="min-w-0">
-                    <p className="min-w-0 break-words font-sans text-xs font-bold uppercase tracking-wider text-accent-strong">
-                      Announcement
-                    </p>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2">
+                      <p className="min-w-0 break-words font-sans text-xs font-bold uppercase tracking-wider text-accent-strong">
+                        Announcement
+                      </p>
+                      <span className="inline-flex items-center rounded-full bg-primary px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-wider text-primary-foreground shadow-sm motion-safe:animate-bounce">
+                        NEW
+                      </span>
+                    </div>
                     <p className="font-sans text-xs text-muted-foreground">Published {featured.date}</p>
                   </div>
                 </div>
