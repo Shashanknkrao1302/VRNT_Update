@@ -1,4 +1,4 @@
-﻿import { describe, it, expect } from "vitest";
+import { describe, it, expect } from "vitest";
 import { ANNOUNCEMENTS, getFeaturedAnnouncement, getAnnouncementById } from "./announcements";
 
 describe("announcements model", () => {
@@ -31,7 +31,7 @@ describe("announcements model", () => {
     ]);
   });
 
-  it("publishes the VRNT Staff Registration Campaign with details and download actions", () => {
+  it("publishes the Paatashala Admin and Adhyapakar Registration Campaign with details and download actions", () => {
     const campaign = getAnnouncementById("staff-registration-campaign");
     expect(campaign).toBeDefined();
     expect(campaign?.actions).toEqual([

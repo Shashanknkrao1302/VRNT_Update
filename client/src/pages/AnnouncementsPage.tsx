@@ -110,7 +110,7 @@ function StaffRegistrationCircular() {
     <div className="flex flex-col gap-6 rounded-xl border border-border bg-surface p-6 shadow-soft sm:p-8">
       <div className="border-b border-border pb-4">
         <h2 className="font-serif text-xl font-bold text-primary sm:text-2xl">
-          VRNT Staff Registration Campaign
+          Paatashala Admin and Adhyapakar Registration Campaign
         </h2>
         <p className="mt-1 font-sans text-sm font-semibold text-accent-strong">
           Request for Cooperation from All Paatashalas
@@ -159,7 +159,7 @@ function StaffRegistrationCircular() {
 
       <div className="space-y-4 text-sm leading-relaxed text-foreground/90">
         <p>
-          VRNT is conducting a Staff Registration Campaign to maintain accurate and up-to-date records of Paatashala
+          VRNT is conducting a Paatashala Admin and Adhyapakar Registration Campaign to maintain accurate and up-to-date records of Paatashala
           Administrators, Adhyapakars, and Vidyarthis, and to simplify access to VRNT’s services.
         </p>
         <p>
@@ -200,7 +200,7 @@ function StaffRegistrationCircular() {
 
       <div className="space-y-3 text-sm text-foreground/90">
         <p>
-          We kindly request Paatashala managements to share the registration link with the concerned staff members and assist them in completing registration promptly. Your cooperation will help make Vidyarthi enrollment and examination-related services more convenient and effective.
+          We kindly request Paatashala managements to share the registration link with the concerned Paatashala Administrators and Adhyapakars and assist them in completing registration promptly. Your cooperation will help make Vidyarthi enrollment and examination-related services more convenient and effective.
         </p>
         <p className="font-semibold text-primary">
           For assistance or clarification, please contact the VRNT office.
