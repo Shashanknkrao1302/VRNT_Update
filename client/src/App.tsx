@@ -22,6 +22,7 @@ const Mahotsav = lazy(() => import("./components/sections/Mahotsav"));
 const ParikshaResultPage = lazy(() => import("./components/sections/ParikshaResult"));
 const AnnouncementsPage = lazy(() => import("./pages/AnnouncementsPage"));
 const NewsPage = lazy(() => import("./pages/NewsPage"));
+const EventsPage = lazy(() => import("./pages/EventsPage"));
 const NotFound = lazy(() => import("./pages/not-found"));
 
 /** Scrolls to the top of the page on every route change (but not on hash navigation). */
@@ -59,6 +60,7 @@ export default function App() {
             <Route path="/mission" element={<Mission />} />
             <Route path="/initiatives" element={<InitiativesPage />} />
             <Route path="/activities" element={<Activities />} />
+            <Route path="/events" element={<EventsPage />} />
             <Route path="/vedas" element={<VedasPage />} />
             <Route path="/vedas/maha-periyavas-message" element={<MahaPeriyavasMessage />} />
             <Route path="/pariksha" element={<Pariksha />} />

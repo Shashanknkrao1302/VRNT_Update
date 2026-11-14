@@ -33,6 +33,7 @@ export const PRIMARY_NAV: NavGroup[] = [
     label: "Programs",
     links: [
       { path: "/activities", label: "Activities", description: "Ongoing initiatives and schemes" },
+      { path: "/events", label: "Events", description: "Convocations, ceremonies, and celebrations" },
       { path: "/pariksha", label: "Pariksha", description: "Examinations and certification" },
       { path: "/mahotsav", label: "Shashtyabda Mahotsav", description: "60th anniversary celebrations" },
     ],
