@@ -16,6 +16,7 @@ const ROUTES = [
   "/initiatives",
   "/activities",
   "/activities?view=final-exams",
+  "/events",
   "/vedas",
   "/vedas/maha-periyavas-message",
   "/pariksha",
